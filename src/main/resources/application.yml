@@ -1,0 +1,32 @@
+
+spring:
+  profiles:
+    active: local
+#  application:
+#    name: game-api
+#  database :
+#    main :
+#      jdbcUrl: jdbc:mysql://localhost:3306/game?useSSL=false&characterEncoding=utf8&allowMultiQueries=true
+#      username: twkiz
+#      password:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      type: com.alibaba.druid.pool.DruidDataSource
+#      minimumIdle: 30
+#      initialSize: 30
+#      maximumPoolSize: 200
+#      connectionTimeout: 30000
+#      timeBetweenEvictionRunsMillis: 60000
+#      minEvictableIdleTimeMillis: 300000
+#      poolPrepareStatements: true
+#  rocketmq:
+#    nameServerAddress: http://localhost:6676
+#    consumerGroup: game-api-local
+#    producerGroup: game-api-prod
+#    sendMsgTimeout: 60
+#    topicName: test
+#    upgradeTag: testTag
+#    consumeThreadMin: 10
+#    consumeThreadMax: 20
+#server:
+#  port: 6666
+#publicKey: q32r9uasdf;asjdfopq2r39nasdo;f
