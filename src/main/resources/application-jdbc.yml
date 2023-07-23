@@ -1,0 +1,24 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: demo
+  datasource :
+    url: jdbc:mysql://127.0.0.1:3306/demo?useSSL=false&characterEncoding=utf8&allowMultiQueries=true&serverTimezone=UTC
+    username: root
+    password: 1qaz@WSX
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  datasource1 :
+    main :
+      jdbcUrl: jdbc:mysql://localhost:3306/demo?useSSL=false&characterEncoding=utf8&allowMultiQueries=true
+      username: root
+      password: 1qaz@WSX
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+  datasource2 :
+    main :
+      jdbcUrl: jdbc:mysql://localhost:3306/demo?useSSL=false&characterEncoding=utf8&allowMultiQueries=true
+      username: root
+      password: 1qaz@WSX
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource

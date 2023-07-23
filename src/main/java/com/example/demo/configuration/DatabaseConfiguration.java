@@ -13,7 +13,7 @@ public class DatabaseConfiguration {
     public static final String MAIN_DATASOURCE = "MainDS";
 
     @Bean(name = MAIN_DATASOURCE, destroyMethod = "")
-    @ConfigurationProperties(prefix = "spring.datasource.main")
+    @ConfigurationProperties(prefix = "spring.datasource1.main")
     @Primary
     public DataSource dataSourceMain() {
         return new HikariDataSource();

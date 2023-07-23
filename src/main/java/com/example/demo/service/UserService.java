@@ -1,9 +1,12 @@
 package com.example.demo.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.demo.constant.ResMsg;
+import com.example.demo.dao.UserDao;
 import com.example.demo.mapper.MainDataBaseMapper;
-import com.example.demo.model.vo.Pen;
-import com.example.demo.model.vo.User;
+import com.example.demo.model.vo.PenVO;
+import com.example.demo.model.vo.UserVO;
+import com.example.demo.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -16,26 +19,43 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    MainDataBaseMapper mapper;
+    private MainDataBaseMapper mapper;
+
+    @Autowired
+    private UserDao userDao;
 
     public JSONObject testMethod(){
-//        JSObject jsObject = testMapper.retrunJSON();
         JSONObject jsObject = new JSONObject();
-        Pen pen = new Pen();
-        pen.setBrand("skb");
-        pen.setPrice(BigDecimal.TEN);
-        jsObject.put("aaa",pen);
+        PenVO penVO = new PenVO();
+        penVO.setBrand("skb");
+        penVO.setPrice(BigDecimal.TEN);
+        jsObject = JSONObject.parseObject(JSONObject.toJSONString(penVO));
         return jsObject;
     }
-    public User getUserData(Integer id){
-        return mapper.getUserData(id);
+
+    public Response saveUser(String userName){
+        return Response.success(ResMsg.ADD_SUCCESS, userDao.saveUser(userName));
     }
 
-    public List<User> getUserDataList(List<Integer> ids){
-        List<User> userList = new ArrayList<>();
+    public Response<UserVO> getUserData(Integer id){
+        return Response.success(ResMsg.ADD_SUCCESS, mapper.getUserData(id));
+    }
+    public Response<UserVO> getUserData1(Integer id){
+        return Response.success(ResMsg.ADD_SUCCESS, userDao.queryUser(id));
+    }
+
+    public Response<List<UserVO>> getUserDataList(List<Integer> ids){
+        List<UserVO> userVOList = new ArrayList<>();
         if(!ObjectUtils.isEmpty(ids)){
-            userList = mapper.getUserList(ids);
+            userVOList = mapper.getUserList(ids);
         }
-        return userList;
+        return Response.success(ResMsg.ADD_SUCCESS, userVOList);
+    }
+    public Response<List<UserVO>> getUserDataList1(List<Integer> ids){
+        List<UserVO> userVOList = new ArrayList<>();
+        if(!ObjectUtils.isEmpty(ids)){
+            userVOList = userDao.getUserDataList(ids);
+        }
+        return Response.success(ResMsg.ADD_SUCCESS, userVOList);
     }
 }

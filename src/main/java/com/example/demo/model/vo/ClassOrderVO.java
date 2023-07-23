@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Class {
-    private Integer id;
-    private String className;
+public class ClassOrderVO {
+    private Integer userId;
+    private Integer classId;
 
 }
