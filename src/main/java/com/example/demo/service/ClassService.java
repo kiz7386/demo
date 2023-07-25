@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import com.example.demo.constant.ResMsg;
-import com.example.demo.dao.ClassDao;
 import com.example.demo.mapper.MainDataBaseMapper;
 import com.example.demo.model.vo.ClassVO;
 import com.example.demo.response.Response;
@@ -15,27 +13,10 @@ public class ClassService {
 
     @Autowired
     private MainDataBaseMapper mapper;
-    @Autowired // (required = false)如果該 類別或者介面找不到，就不做注入動作
-    private ClassDao classDao;
 
     public Response<ClassVO> getUserClassData(Integer id){
         return Response.success(mapper.getUserClassData(id));
     }
 
-    public Response<ClassVO> getUserClassData2(Integer id){
-        return Response.success(classDao.queryClass(id));
-    }
-    public Response<List<ClassVO>> getClassDataList(List<Integer> ids){
-        return Response.success(classDao.getClassDataList(ids));
-    }
-    public Response saveClass(String className){
-        return Response.success(ResMsg.ADD_SUCCESS, classDao.saveClass(className));
-    }
-    public Response updateClassName(ClassVO cl){
-        return Response.success(ResMsg.ADD_SUCCESS, classDao.updateClassName(cl.getClassName(), cl.getId()));
-    }
-    public Response deleteClass(ClassVO cl){
-        return Response.success(ResMsg.ADD_SUCCESS, classDao.deleteClass(cl.getId()));
-    }
 
 }
