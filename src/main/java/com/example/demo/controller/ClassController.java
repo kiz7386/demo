@@ -17,12 +17,8 @@ public class ClassController {
     private ClassService classService;
 
     // 掛在api 方法上（可設定路徑, 方法, 或者把路徑拿來當變數）, produces 設定Response header 為 contentType = application/json;chartset=utf-8
-    @GetMapping(value = "/getUserClassData", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/getUserClassData2", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
                                             // 傳入參數設定名稱 （?key=value&key=value...）
-    public Response<ClassVO> getUserClassData(@RequestParam("id") Integer id){
-        return classService.getUserClassData(id);
-    }
-    @RequestMapping(value = "/getUserClassData2",method = RequestMethod.GET)
     public Response<ClassVO> getUserClassData2(@RequestParam("id") Integer id){
         return classService.getUserClassData2(id);
     }
