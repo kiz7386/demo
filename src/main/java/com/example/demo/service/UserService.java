@@ -38,10 +38,10 @@ public class UserService {
     }
 
     public Response<UserVO> getUserData(Integer id){
-        return Response.success(ResMsg.ADD_SUCCESS, mapper.getUserData(id));
+        return Response.success(ResMsg.GET_DATA_SUCCESS, mapper.getUserData(id));
     }
     public Response<UserVO> getUserData1(Integer id){
-        return Response.success(ResMsg.ADD_SUCCESS, userDao.queryUser(id));
+        return Response.success(ResMsg.GET_DATA_SUCCESS, userDao.queryUser(id));
     }
 
     public Response<List<UserVO>> getUserDataList(List<Integer> ids){
@@ -49,13 +49,13 @@ public class UserService {
         if(!ObjectUtils.isEmpty(ids)){
             userVOList = mapper.getUserList(ids);
         }
-        return Response.success(ResMsg.ADD_SUCCESS, userVOList);
+        return Response.success(ResMsg.GET_DATA_SUCCESS, userVOList);
     }
     public Response<List<UserVO>> getUserDataList1(List<Integer> ids){
         List<UserVO> userVOList = new ArrayList<>();
         if(!ObjectUtils.isEmpty(ids)){
             userVOList = userDao.getUserDataList(ids);
         }
-        return Response.success(ResMsg.ADD_SUCCESS, userVOList);
+        return Response.success(ResMsg.GET_DATA_SUCCESS, userVOList);
     }
 }
