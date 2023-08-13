@@ -37,7 +37,7 @@ public class UserController {
         int a = 0;
         a= a+1;
         int b = a+1;
-        b;
+        System.out.println(b);
         System.out.println(a);
         return userService.getUserData(id);
     }
