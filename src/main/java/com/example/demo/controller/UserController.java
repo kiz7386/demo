@@ -36,6 +36,8 @@ public class UserController {
     public Response<UserVO> getUserData(@RequestParam("id") Integer id){
         int a = 0;
         a= a+1;
+        int b = a+1;
+        b;
         System.out.println(a);
         return userService.getUserData(id);
     }
