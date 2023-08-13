@@ -34,6 +34,9 @@ public class UserController {
 
     @GetMapping(value = "/getUserData", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Response<UserVO> getUserData(@RequestParam("id") Integer id){
+        int a = 0;
+        a= a+1;
+        System.out.println(a);
         return userService.getUserData(id);
     }
     @GetMapping(value = "/getUserData1", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
