@@ -14,6 +14,7 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")//对所有请求路径
                         .allowedOrigins("*")//允许所有域名
+//                        .allowedOriginPatterns("*") // SpringBoot2.4.0 [allowedOriginPatterns]代替[allowedOrigins]
                         .allowCredentials(true)//允许cookie等凭证
                         .allowedMethods("GET", "POST", "DELETE", "PUT","PATCH")//允许所有方法
                         .maxAge(3600);

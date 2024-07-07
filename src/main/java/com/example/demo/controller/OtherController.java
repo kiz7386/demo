@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import static com.example.demo.constant.Constants.SYSTEM_ID;
 import static com.example.demo.constant.Constants.X_SYSTEM_ID;
 
-@RestController("/other")
+@RestController
+@RequestMapping("/other")
 public class OtherController {
 
     @Autowired

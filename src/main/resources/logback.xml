@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <!--定义服务名称-->
+    <property name="SERVER_NAME" value="game-api" />
+
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- 错误日志:系统发送意外异常时捕获到的日志，一般通过 try-catch 捕获到的 -->
+    <appender name="ERROR_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Prudent>true</Prudent>
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+<!--            &lt;!&ndash;日志文件输出的文件名&ndash;&gt;-->
+<!--            <FileNamePattern>/data/logs/${SERVER_NAME}/error/error.%d{yyyy-MM-dd}.%i.log</FileNamePattern>-->
+<!--            &lt;!&ndash;日志文件保留天数&ndash;&gt;-->
+<!--            <maxFileSize>100MB</maxFileSize>-->
+<!--            <MaxHistory>7</MaxHistory>-->
+<!--            <totalSizeCap>100GB</totalSizeCap>-->
+<!--        </rollingPolicy>-->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>{"method":"%class.%method","server-name": "${SERVER_NAME}","datetime": "%d{yyyy-MM-dd HH:mm:ss.SSS}","line": "%line",%msg}%n</pattern>
+            <charset>utf8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印DEBUG日志 -->
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+
+    <!-- 业务日志: 正常打印的日志  -->
+    <appender name="INFO_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Prudent>true</Prudent>
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+<!--            &lt;!&ndash;日志文件输出的文件名&ndash;&gt;-->
+<!--            <FileNamePattern>/data/logs/${SERVER_NAME}/info/info.%d{yyyy-MM-dd}.%i.log</FileNamePattern>-->
+<!--            &lt;!&ndash;日志文件保留天数&ndash;&gt;-->
+<!--            <maxFileSize>100MB</maxFileSize>-->
+<!--            <MaxHistory>7</MaxHistory>-->
+<!--            <totalSizeCap>100GB</totalSizeCap>-->
+<!--        </rollingPolicy>-->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>{"method":"%class.%method","server-name": "${SERVER_NAME}","datetime": "%d{yyyy-MM-dd HH:mm:ss.SSS}",%msg}%n</pattern>
+            <charset>utf8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter"><!-- 只打印DEBUG日志 -->
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 队列日志: 队列生产过程发生异常记录日志，方便进行生产重试。  -->
+    <appender name="MQ_FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <Prudent>true</Prudent>
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+<!--            &lt;!&ndash;日志文件输出的文件名&ndash;&gt;-->
+<!--            <FileNamePattern>/data/logs/${SERVER_NAME}/mqProFail/mqProFail.%d{yyyy-MM-dd}.%i.log</FileNamePattern>-->
+<!--            &lt;!&ndash;日志文件保留天数&ndash;&gt;-->
+<!--            <maxFileSize>100MB</maxFileSize>-->
+<!--            <MaxHistory>7</MaxHistory>-->
+<!--            <totalSizeCap>100GB</totalSizeCap>-->
+<!--        </rollingPolicy>-->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>{"server-name": "${SERVER_NAME}","datetime": "%d{yyyy-MM-dd HH:mm:ss.SSS}",%msg}%n</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+    <logger name="MQ_LOG" level="INFO" additivity="false">
+        <appender-ref ref="MQ_FILE" />
+    </logger>
+
+    <!-- 控制台输出级别 -->
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ERROR_FILE" />
+        <appender-ref ref="INFO_FILE" />
+    </root>
+</configuration>
