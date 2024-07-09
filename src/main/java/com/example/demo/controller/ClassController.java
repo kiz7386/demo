@@ -5,11 +5,12 @@ import com.example.demo.response.Response;
 import com.example.demo.service.ClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController // 將此類別設定為api接口類別, 並返回ＪＳＯＮ格式的 元件標籤（@Component), 有貼標籤的類別無法另外用 new
+@Controller // 將此類別設定為api接口類別, 並返回ＪＳＯＮ格式的 元件標籤（@Component), 有貼標籤的類別無法另外用 new
 @RequestMapping(value = "/class")
 public class ClassController {
 
@@ -22,7 +23,7 @@ public class ClassController {
     public Response<ClassVO> getUserClassData(@RequestParam("id") Integer id){
         return classService.getUserClassData(id);
     }
-    @RequestMapping(value = "/getUserClassData2",method = RequestMethod.GET)
+    @RequestMapping(value = "/getUserClassData2",method = {RequestMethod.GET,RequestMethod.POST })
     public Response<ClassVO> getUserClassData2(@RequestParam("id") Integer id){
         return classService.getUserClassData2(id);
     }
